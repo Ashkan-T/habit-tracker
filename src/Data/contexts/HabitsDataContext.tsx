@@ -19,8 +19,8 @@ export default function HabitProvider({ children }: { children: ReactNode }) {
     "exercise",
     "work",
   ]);
-  const addHabit = (habits: Habit) => {
-    //add later!
+  const addHabit = (newHabit: Habit) => {
+    setHabits([...habits, newHabit]);
   };
   const removeHabitAt = (index: number) => {
     //remove later!
