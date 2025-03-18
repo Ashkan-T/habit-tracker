@@ -1,6 +1,9 @@
 import { createContext, ReactNode, useState } from "react";
 
-type Habit = string;
+type Habit = {
+  name: string;
+  completed: boolean;
+};
 type HabitDataContext = {
   habits: Habit[];
   addHabit: (habit: Habit) => void;
@@ -13,17 +16,17 @@ export const HabitContext = createContext<HabitDataContext>({
 });
 
 export default function HabitProvider({ children }: { children: ReactNode }) {
-  const [habits, setHabits] = useState([
-    "wake up",
-    "sleep",
-    "exercise",
-    "work",
+  const [habits, setHabits] = useState<Habit[]>([
+    { name: "wakeup early", completed: true },
+    { name: "exercise", completed: false },
   ]);
   const addHabit = (newHabit: Habit) => {
     setHabits([...habits, newHabit]);
   };
   const removeHabitAt = (index: number) => {
-    //remove later!
+    const newHabit = [...habits];
+    newHabit.splice(index, 1);
+    setHabits(newHabit);
   };
 
   return (

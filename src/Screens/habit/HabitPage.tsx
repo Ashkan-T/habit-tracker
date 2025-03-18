@@ -3,6 +3,7 @@ import {
   Button,
   Card,
   CardActions,
+  IconButton,
   Paper,
   TextField,
   Typography,
@@ -11,10 +12,11 @@ import { ChangeEvent, CSSProperties, useContext, useState } from "react";
 import { HabitContext } from "../../Data/contexts/HabitsDataContext";
 import { DarkModeContext } from "../../Data/contexts/DarkMode.context";
 import { lightBlue } from "@mui/material/colors";
+import { DeleteForever, Done } from "@mui/icons-material";
 
 export default function HabitPage() {
   const { darkMode } = useContext(DarkModeContext);
-  const { habits, addHabit } = useContext(HabitContext);
+  const { habits, addHabit, removeHabitAt } = useContext(HabitContext);
   const cardstyle: CSSProperties = darkMode
     ? { backgroundColor: "#555", color: "lightBlue", marginTop: 8 }
     : { marginTop: 8 };
@@ -26,7 +28,10 @@ export default function HabitPage() {
     setNewHabitName(event.target.value);
   }
   function handleAddNewHabitName() {
-    addHabit(newHabitName);
+    addHabit({ name: newHabitName, completed: false });
+  }
+  function handleRemoveHabitItem(indx: number) {
+    removeHabitAt(indx);
   }
 
   return (
@@ -39,8 +44,22 @@ export default function HabitPage() {
     >
       <Box p={1}>
         <Typography>Habits</Typography>
-        {habits.map((neaHabit) => (
-          <Card style={cardstyle}>{neaHabit}</Card>
+        {habits.map((habitItem, habitIndex) => (
+          <Card style={cardstyle}>
+            <Box p={1}>
+              <Typography>{habitItem.name}</Typography>
+              {habitItem.completed && <Done />}
+            </Box>
+            <CardActions>
+              <IconButton
+                onClick={() => {
+                  handleRemoveHabitItem(habitIndex);
+                }}
+              >
+                <DeleteForever color="error" />
+              </IconButton>
+            </CardActions>
+          </Card>
         ))}
         <Card style={cardstyle}>
           <Typography
