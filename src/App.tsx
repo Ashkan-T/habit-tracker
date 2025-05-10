@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./Components/header/Header";
 import Home from "./Screens/home/Home";
@@ -7,14 +7,20 @@ import DarkModeProvider from "./Data/contexts/DarkMode.context";
 import SettingsPage from "./Components/settingspage/SettingsPage";
 import HabitProvider from "./Data/contexts/HabitsDataContext";
 import HabitPage from "./Screens/habit/HabitPage";
+import Dashboard from "./Screens/dashboard/Dashboard";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("home");
+  const [currentPage, setCurrentPage] = useState("");
   const changePage = (pageName: string) => {
     setCurrentPage(pageName);
+    localStorage.setItem("currentPage", pageName);
   };
+  useEffect(() => {
+    const handlePage = localStorage.getItem("currentPage");
+    changePage(handlePage ?? "home");
+  }, []);
   const backHome = () => {
-    setCurrentPage("home");
+    changePage("home");
   };
   return (
     <DarkModeProvider>
@@ -25,6 +31,7 @@ function App() {
           {currentPage == "about" && <About />}
           {currentPage == "settings" && <SettingsPage />}
           {currentPage == "habits" && <HabitPage />}
+          {currentPage == "dashboard" && <Dashboard />}
         </div>
       </HabitProvider>
     </DarkModeProvider>
