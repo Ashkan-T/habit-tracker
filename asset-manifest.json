@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/habit-tracker/static/css/main.e6c13ad2.css",
+    "main.js": "/habit-tracker/static/js/main.16bf7e29.js",
+    "static/js/453.6f276dca.chunk.js": "/habit-tracker/static/js/453.6f276dca.chunk.js",
+    "static/media/AdobeStock_155989815-scaled.jpeg": "/habit-tracker/static/media/AdobeStock_155989815-scaled.1eb8d6c40e6e0c7911f4.jpeg",
+    "static/media/dark-habit.png": "/habit-tracker/static/media/dark-habit.b2504a54237f709afbfe.png",
+    "static/media/business-people-meeting-flat-cha.jpeg": "/habit-tracker/static/media/business-people-meeting-flat-cha.425f0c5fdf7ad75d4c70.jpeg",
+    "static/media/gear-mechanism-and-settings-icon.jpeg": "/habit-tracker/static/media/gear-mechanism-and-settings-icon.e5fb844faa4244239317.jpeg",
+    "static/media/dashboard-dark.png": "/habit-tracker/static/media/dashboard-dark.9b05f4912ab4553273e6.png",
+    "static/media/about-dark.png": "/habit-tracker/static/media/about-dark.f86645e65e3f0a4bae29.png",
+    "static/media/images.jpeg": "/habit-tracker/static/media/images.a479fb9b0378fdf9e7ef.jpeg",
+    "index.html": "/habit-tracker/index.html",
+    "main.e6c13ad2.css.map": "/habit-tracker/static/css/main.e6c13ad2.css.map",
+    "main.16bf7e29.js.map": "/habit-tracker/static/js/main.16bf7e29.js.map",
+    "453.6f276dca.chunk.js.map": "/habit-tracker/static/js/453.6f276dca.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.16bf7e29.js"
+  ]
+}
