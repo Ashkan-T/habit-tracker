@@ -3,6 +3,7 @@ import {
   Button,
   Card,
   CardActions,
+  Grid2,
   IconButton,
   Paper,
   TextField,
@@ -29,21 +30,27 @@ export default function HabitPage() {
     <Paper
       style={
         darkMode
-          ? { backgroundColor: "#444", color: "lightgray" }
+          ? { backgroundColor: "#444", color: "lightBlue" }
           : { color: "blue" }
       }
     >
       <Box p={1}>
-        <Typography>Habits</Typography>
-        {habits.map((habitItem, habitIndex) => (
-          <HabitCard
-            habit={habitItem}
-            style={cardstyle}
-            onDeleteClick={() => {
-              handleRemoveHabitItem(habitIndex);
-            }}
-          />
-        ))}
+        <Typography pb={2} variant="h3">
+          Habits
+        </Typography>
+        <Grid2 container spacing={1}>
+          {habits.map((habitItem, habitIndex) => (
+            <Grid2 size={{ xs: 12, sm: 6, lg: 4, xl: 3 }}>
+              <HabitCard
+                habit={habitItem}
+                style={cardstyle}
+                onDeleteClick={() => {
+                  handleRemoveHabitItem(habitIndex);
+                }}
+              />
+            </Grid2>
+          ))}
+        </Grid2>
         <HabitAddForm style={cardstyle} />
       </Box>
     </Paper>

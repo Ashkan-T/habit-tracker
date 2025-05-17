@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./Components/header/Header";
 import Home from "./Screens/home/Home";
-import About from "./Screens/about/About";
 import DarkModeProvider from "./Data/contexts/DarkMode.context";
 import SettingsPage from "./Components/settingspage/SettingsPage";
 import HabitProvider from "./Data/contexts/HabitsDataContext";
 import HabitPage from "./Screens/habit/HabitPage";
 import Dashboard from "./Screens/dashboard/Dashboard";
+import AboutPage from "./Screens/about/AboutPage";
+import { Container, Grid2 } from "@mui/material";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("");
@@ -25,14 +26,16 @@ function App() {
   return (
     <DarkModeProvider>
       <HabitProvider>
-        <div className="App">
+        <Container style={{ padding: 0 }} maxWidth="xl" className="App">
           <Header title="Habit tracker" onLogoClick={backHome} />
-          {currentPage == "home" && <Home onPageSelect={changePage} />}
-          {currentPage == "about" && <About />}
-          {currentPage == "settings" && <SettingsPage />}
-          {currentPage == "habits" && <HabitPage />}
-          {currentPage == "dashboard" && <Dashboard />}
-        </div>
+          <Grid2>
+            {currentPage == "home" && <Home onPageSelect={changePage} />}
+            {currentPage == "about" && <AboutPage />}
+            {currentPage == "settings" && <SettingsPage />}
+            {currentPage == "habits" && <HabitPage />}
+            {currentPage == "dashboard" && <Dashboard />}
+          </Grid2>
+        </Container>
       </HabitProvider>
     </DarkModeProvider>
   );

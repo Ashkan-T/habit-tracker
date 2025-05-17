@@ -27,22 +27,28 @@ export default function HabitCard({
   });
 
   return (
-    <Card style={style}>
-      <Box p={1}>
-        {cate != undefined && (
-          <Grid2>
-            {cate.icon}
-            <Typography>{cate.name}</Typography>
+    <Grid2>
+      <Card style={style}>
+        <Box p={1}>
+          {cate != undefined && (
+            <Grid2 container spacing={1} alignItems={"center"}>
+              <Grid2>{cate.icon}</Grid2>
+              <Typography flexGrow={1}>{cate.name}</Typography>
+            </Grid2>
+          )}
+        </Box>
+        <CardActions>
+          <Grid2 container spacing={1} alignItems={"center"} width={"100%"}>
+            <Typography flexGrow={1}>{habit.name}</Typography>
+            <Grid2>
+              {habit.completed && <Done />}
+              <IconButton onClick={onDeleteClick}>
+                <DeleteForever color="error" />
+              </IconButton>
+            </Grid2>
           </Grid2>
-        )}
-        <Typography>{habit.name}</Typography>
-        {habit.completed && <Done />}
-      </Box>
-      <CardActions>
-        <IconButton onClick={onDeleteClick}>
-          <DeleteForever color="error" />
-        </IconButton>
-      </CardActions>
-    </Card>
+        </CardActions>
+      </Card>
+    </Grid2>
   );
 }
