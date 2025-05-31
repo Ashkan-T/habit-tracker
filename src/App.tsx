@@ -27,13 +27,20 @@ function App() {
     <DarkModeProvider>
       <HabitProvider>
         <Container style={{ padding: 0 }} maxWidth="xl" className="App">
-          <Header title="Habit tracker" onLogoClick={backHome} />
-          <Grid2>
-            {currentPage == "home" && <Home onPageSelect={changePage} />}
-            {currentPage == "about" && <AboutPage />}
-            {currentPage == "settings" && <SettingsPage />}
-            {currentPage == "habits" && <HabitPage />}
-            {currentPage == "dashboard" && <Dashboard />}
+          <Grid2
+            container
+            flexDirection={"column"}
+            height={"100dvh"}
+            wrap="nowrap"
+          >
+            <Header title="Habit tracker" onLogoClick={backHome} />
+            <Grid2 flexGrow={1}>
+              {currentPage == "home" && <Home onPageSelect={changePage} />}
+              {currentPage == "about" && <AboutPage />}
+              {currentPage == "settings" && <SettingsPage />}
+              {currentPage == "habits" && <HabitPage />}
+              {currentPage == "dashboard" && <Dashboard />}
+            </Grid2>
           </Grid2>
         </Container>
       </HabitProvider>

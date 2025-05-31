@@ -19,17 +19,16 @@ export default function Dashboard() {
     ? {
         backgroundColor: "#555",
         color: "lightBlue",
-        marginTop: 8,
         height: "100%",
       }
-    : { marginTop: 8, height: "100%" };
+    : { height: "100%" };
 
   return (
     <Box
       style={
         darkMode
           ? { backgroundColor: "#444", color: "lightBlue", paddingTop: 8 }
-          : {}
+          : { color: "blue" }
       }
     >
       <Box p={1}>
@@ -57,12 +56,15 @@ export default function Dashboard() {
                       <Typography flexGrow={1}>{habitItems.name}</Typography>
                     </Grid2>
                   </Box>
-
                   <CardActions>
                     <Grid2 container flexGrow={1} alignItems={"center"}>
+                      <Typography flex={1} variant="caption">
+                        Day Count: {habitItems.dayCount}
+                      </Typography>
                       <Typography variant="caption" flexGrow={1}>
                         Day Streak: {habitItems.dayStreak}
                       </Typography>
+
                       <Grid2>
                         <Button
                           style={{ marginBottom: 8, marginLeft: 8 }}

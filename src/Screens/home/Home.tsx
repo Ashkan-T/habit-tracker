@@ -26,7 +26,9 @@ export default function Home({ onPageSelect }: AboutProps) {
   const cardSize = { xs: 12, sm: 6, lg: 4, xl: 3 };
 
   return (
-    <Paper style={{ backgroundColor: darkMode ? "#444" : undefined }}>
+    <Paper
+      style={{ backgroundColor: darkMode ? "#444" : undefined, height: "100%" }}
+    >
       <Grid2 container>
         <Grid2 padding={3} size={cardSize}>
           <Card style={cardstyle}>

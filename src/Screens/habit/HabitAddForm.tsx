@@ -36,6 +36,7 @@ export default function HabitAddForm({ style }: HabitAddFormProps) {
       categoryId,
       lastDone: null,
       dayStreak: 0,
+      dayCount: 0,
     });
   }
 
@@ -56,7 +57,7 @@ export default function HabitAddForm({ style }: HabitAddFormProps) {
         />
       </Box>
       <FormControl fullWidth>
-        <InputLabel id="Category-select-label">Category</InputLabel>
+        <InputLabel id="Category-select-label">Categories</InputLabel>
         <Select
           labelId="Category-select-label"
           value={categoryId}

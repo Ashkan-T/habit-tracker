@@ -1,18 +1,13 @@
 import {
   AccessAlarm,
   ConnectWithoutContact,
+  FreeBreakfastOutlined,
   SelfImprovement,
   SettingsAccessibility,
   Spa,
 } from "@mui/icons-material";
 
-export interface Category {
-  id: number;
-  name: string;
-  icon: any;
-}
-
-const Categories: Category[] = [
+const Categories = [
   {
     id: 1,
     name: "Health & Fitness",
@@ -37,6 +32,11 @@ const Categories: Category[] = [
     id: 5,
     name: "Social & Relationships",
     icon: <ConnectWithoutContact />,
+  },
+  {
+    id: 6,
+    name: "Liesure Time",
+    icon: <FreeBreakfastOutlined />,
   },
 ];
 

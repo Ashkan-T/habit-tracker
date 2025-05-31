@@ -7,18 +7,21 @@ export type Habit = {
   lastDone: Date | null;
   dayStreak: number;
   categoryId?: number;
+  dayCount?: number;
 };
 type HabitDataContext = {
   habits: Habit[];
   addHabit: (habit: Habit) => void;
   removeHabitAt: (index: number) => void;
   handleHabitsDoneToday: (index: number) => void;
+  updateHabitAt: (index: number, updatedHabit: Habit) => void;
 };
 export const HabitContext = createContext<HabitDataContext>({
   habits: [],
   addHabit: () => {},
   removeHabitAt: () => {},
   handleHabitsDoneToday: () => {},
+  updateHabitAt: () => {},
 });
 
 export default function HabitProvider({ children }: { children: ReactNode }) {
@@ -33,6 +36,13 @@ export default function HabitProvider({ children }: { children: ReactNode }) {
       const newHabit: Habit[] = JSON.parse(habitStr);
       setHabits(newHabit);
     }
+  };
+  const updateHabitAt = (index: number, updatedHabit: Habit) => {
+    setHabits((prevHabit) => {
+      const newHabits = [...prevHabit];
+      newHabits[index] = updatedHabit;
+      return newHabits;
+    });
   };
   const addHabit = (newHabit: Habit) => {
     const newHabits = [...habits, newHabit];
@@ -58,23 +68,34 @@ export default function HabitProvider({ children }: { children: ReactNode }) {
     }
     // Part 2:
     const Yesterday = startOfToday.subtract(1, "day");
-    if (Yesterday.isSameOrBefore(ld)) {
-      habits[index].dayStreak = habits[index].dayStreak + 1;
+    if (ld && Yesterday.isSameOrBefore(ld)) {
+      newHabit[index].dayStreak = newHabit[index].dayStreak + 1;
     } else {
-      habits[index].dayStreak = 1;
+      newHabit[index].dayStreak = 1;
     }
+
     // Part 3:
-    if (habits[index].dayStreak >= 30) {
-      habits[index].completed = true;
+    if (newHabit[index].dayStreak >= 30) {
+      newHabit[index].completed = true;
     }
-    habits[index].lastDone = moment().startOf("day").toDate();
+
+    // part 4:
+    newHabit[index].dayCount = (newHabit[index].dayCount || 0) + 1;
+
+    newHabit[index].lastDone = moment().startOf("day").toDate();
     setHabits(newHabit);
     saveHabitsToLocalStorege(newHabit);
   };
 
   return (
     <HabitContext.Provider
-      value={{ habits, addHabit, removeHabitAt, handleHabitsDoneToday }}
+      value={{
+        habits,
+        addHabit,
+        removeHabitAt,
+        handleHabitsDoneToday,
+        updateHabitAt,
+      }}
     >
       {children}
     </HabitContext.Provider>
